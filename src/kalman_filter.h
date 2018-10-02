@@ -17,11 +17,17 @@ public:
   // process covariance matrix
   Eigen::MatrixXd Q_;
 
-  // measurement matrix
+  // measurement matrix for laser
   Eigen::MatrixXd H_;
 
-  // measurement covariance matrix
+  // measurement covariance matrix for laser
   Eigen::MatrixXd R_;
+
+  // measurement matrix for radar
+  Eigen::MatrixXd Hekf_;
+
+  // measurement covariance matrix for radar
+  Eigen::MatrixXd Rekf_;
 
   /**
    * Constructor
@@ -38,12 +44,14 @@ public:
    * @param x_in Initial state
    * @param P_in Initial state covariance
    * @param F_in Transition matrix
-   * @param H_in Measurement matrix
-   * @param R_in Measurement covariance matrix
+   * @param H_in Measurement matrix for radar 
+   * @param R_in Measurement covariance matrix for radar
+   * @param Hekf_in Measurement matrix for laser
+   * @param Rekf_in Measurement covariance matrix for laser
    * @param Q_in Process covariance matrix
    */
   void Init(Eigen::VectorXd &x_in, Eigen::MatrixXd &P_in, Eigen::MatrixXd &F_in,
-      Eigen::MatrixXd &H_in, Eigen::MatrixXd &R_in, Eigen::MatrixXd &Q_in);
+      Eigen::MatrixXd &H_in, Eigen::MatrixXd &R_in,Eigen::MatrixXd &Hekf_in, Eigen::MatrixXd &Rekf_in, Eigen::MatrixXd &Q_in);
 
   /**
    * Prediction Predicts the state and the state covariance
